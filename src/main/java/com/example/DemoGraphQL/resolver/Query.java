@@ -7,26 +7,31 @@ import com.example.DemoGraphQL.repository.AuthorRepository;
 import com.example.DemoGraphQL.repository.BookRepository;
 
 public class Query implements GraphQLQueryResolver {
-    private BookRepository bookRepository;
-    private AuthorRepository authorRepository;
+  private BookRepository bookRepository;
+  private AuthorRepository authorRepository;
 
-    public Query(AuthorRepository authorRepository, BookRepository bookRepository) {
-        this.authorRepository = authorRepository;
-        this.bookRepository = bookRepository;
-    }
+  public Query(AuthorRepository authorRepository, BookRepository bookRepository) {
+    this.authorRepository = authorRepository;
+    this.bookRepository = bookRepository;
+  }
 
-    public Iterable<Book> findAllBooks() {
-        return bookRepository.findAll();
-    }
+  public Iterable<Book> findAllBooks() {
+    return bookRepository.findAll();
+  }
 
-    public Iterable<Author> findAllAuthors() {
-        return authorRepository.findAll();
-    }
+  public Iterable<Author> findAllAuthors() {
+    return authorRepository.findAll();
+  }
 
-    public long countBooks() {
-        return bookRepository.count();
-    }
-    public long countAuthors() {
-        return authorRepository.count();
-    }
+  public Author findMovie(Long id) {
+    return authorRepository.findOne(id);
+  }
+
+  public long countBooks() {
+    return bookRepository.count();
+  }
+
+  public long countAuthors() {
+    return authorRepository.count();
+  }
 }

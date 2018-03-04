@@ -4,6 +4,7 @@ type Book {
     isbn: String!
     pageCount: Int
     author: Author
+    remco:String
 }
 
 extend type Query {

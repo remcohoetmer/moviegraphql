@@ -7,6 +7,7 @@ type Author {
 type Query {
     findAllAuthors: [Author]!
     countAuthors: Long!
+    findMovie(id:Long): Author!
 }
 
 type Mutation {
