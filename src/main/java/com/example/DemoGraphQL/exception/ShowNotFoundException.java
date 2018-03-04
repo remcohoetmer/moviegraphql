@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BookNotFoundException extends RuntimeException implements GraphQLError {
+public class ShowNotFoundException extends RuntimeException implements GraphQLError {
 
   private Map<String, Object> extensions = new HashMap<>();
 
-  public BookNotFoundException(String message, Long invalidBookId) {
+  public ShowNotFoundException(String message, Long invalidShowId) {
     super(message);
-    extensions.put("invalidBookId", invalidBookId);
+    extensions.put("invalidShowId", invalidShowId);
   }
 
   @Override

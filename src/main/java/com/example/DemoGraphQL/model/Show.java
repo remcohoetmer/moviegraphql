@@ -3,7 +3,7 @@ package com.example.DemoGraphQL.model;
 import javax.persistence.*;
 
 @Entity
-public class Book {
+public class Show {
   @Id
   @Column(name = "book_id", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,16 +21,16 @@ public class Book {
   @ManyToOne
   @JoinColumn(name = "author_id",
     nullable = false, updatable = false)
-  private Author author;
+  private Movie movie;
 
-  public Book() {
+  public Show() {
   }
 
-  public Book(String title, String isbn, int pageCount, Author author) {
+  public Show(String title, String isbn, int pageCount, Movie movie) {
     this.title = title;
     this.isbn = isbn;
     this.pageCount = pageCount;
-    this.author = author;
+    this.movie = movie;
   }
 
   public Long getId() {
@@ -65,12 +65,12 @@ public class Book {
     this.pageCount = pageCount;
   }
 
-  public Author getAuthor() {
-    return author;
+  public Movie getMovie() {
+    return movie;
   }
 
-  public void setAuthor(Author author) {
-    this.author = author;
+  public void setMovie(Movie movie) {
+    this.movie = movie;
   }
 
   public String getRemco() {
@@ -82,9 +82,9 @@ public class Book {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    Book book = (Book) o;
+    Show show = (Show) o;
 
-    return id.equals(book.id);
+    return id.equals(show.id);
   }
 
   @Override
@@ -94,12 +94,12 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{" +
+    return "Show{" +
       "id=" + id +
       ", title='" + title + '\'' +
       ", isbn='" + isbn + '\'' +
       ", pageCount=" + pageCount +
-      ", author=" + author +
+      ", movie=" + movie +
       '}';
   }
 }

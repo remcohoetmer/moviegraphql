@@ -1,57 +1,57 @@
 package com.example.DemoGraphQL.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.example.DemoGraphQL.exception.BookNotFoundException;
-import com.example.DemoGraphQL.model.Author;
-import com.example.DemoGraphQL.model.Book;
-import com.example.DemoGraphQL.repository.AuthorRepository;
-import com.example.DemoGraphQL.repository.BookRepository;
+import com.example.DemoGraphQL.exception.ShowNotFoundException;
+import com.example.DemoGraphQL.model.Movie;
+import com.example.DemoGraphQL.model.Show;
+import com.example.DemoGraphQL.repository.MovieRepository;
+import com.example.DemoGraphQL.repository.ShowRepository;
 
 public class Mutation implements GraphQLMutationResolver {
-  private BookRepository bookRepository;
-  private AuthorRepository authorRepository;
+  private ShowRepository showRepository;
+  private MovieRepository movieRepository;
 
-  public Mutation(AuthorRepository authorRepository, BookRepository bookRepository) {
-    this.authorRepository = authorRepository;
-    this.bookRepository = bookRepository;
+  public Mutation(MovieRepository movieRepository, ShowRepository showRepository) {
+    this.movieRepository = movieRepository;
+    this.showRepository = showRepository;
   }
 
-  public Author newAuthor(String firstName, String lastName) {
-    Author author = new Author();
-    author.setFirstName(firstName);
-    author.setLastName(lastName);
+  public Movie newMovie(String title, String description) {
+    Movie movie = new Movie();
+    movie.setTitle(title);
+    movie.setDescription(description);
 
-    authorRepository.save(author);
+    movieRepository.save(movie);
 
-    return author;
+    return movie;
   }
 
-  public Book newBook(String title, String isbn, Integer pageCount, Long authorId) {
-    Book book = new Book();
-    book.setAuthor(new Author(authorId));
-    book.setTitle(title);
-    book.setIsbn(isbn);
-    book.setPageCount(pageCount != null ? pageCount : 0);
+  public Show newShow(String title, String isbn, Integer pageCount, Long movieId) {
+    Show show = new Show();
+    show.setMovie(new Movie(movieId));
+    show.setTitle(title);
+    show.setIsbn(isbn);
+    show.setPageCount(pageCount != null ? pageCount : 0);
 
-    bookRepository.save(book);
+    showRepository.save(show);
 
-    return book;
+    return show;
   }
 
-  public boolean deleteBook(Long id) {
-    bookRepository.delete(id);
+  public boolean deleteShow(Long id) {
+    showRepository.delete(id);
     return true;
   }
 
-  public Book updateBookPageCount(Integer pageCount, Long id) {
-    Book book = bookRepository.findOne(id);
-    if (book == null) {
-      throw new BookNotFoundException("The book to be updated was found", id);
+  public Show updateShowPageCount(Integer pageCount, Long id) {
+    Show show = showRepository.findOne(id);
+    if (show == null) {
+      throw new ShowNotFoundException("The show to be updated was found", id);
     }
-    book.setPageCount(pageCount);
+    show.setPageCount(pageCount);
 
-    bookRepository.save(book);
+    showRepository.save(show);
 
-    return book;
+    return show;
   }
 }

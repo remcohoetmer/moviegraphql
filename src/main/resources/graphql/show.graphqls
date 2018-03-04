@@ -1,0 +1,19 @@
+type Show {
+    id: ID!
+    title: String!
+    isbn: String!
+    pageCount: Int
+    movie: Movie
+    remco:String
+}
+
+extend type Query {
+    findAllShows: [Show]!
+    countShows: Long!
+}
+
+extend type Mutation {
+    newShow(title: String!, isbn: String!, pageCount: Int, movie: ID!) : Show!
+    deleteShow(id: ID!) : Boolean
+    updateShowPageCount(pageCount: Int!, id: ID!) : Show!
+}

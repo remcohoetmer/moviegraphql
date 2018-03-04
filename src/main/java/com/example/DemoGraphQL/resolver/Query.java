@@ -1,37 +1,37 @@
 package com.example.DemoGraphQL.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.example.DemoGraphQL.model.Author;
-import com.example.DemoGraphQL.model.Book;
-import com.example.DemoGraphQL.repository.AuthorRepository;
-import com.example.DemoGraphQL.repository.BookRepository;
+import com.example.DemoGraphQL.model.Movie;
+import com.example.DemoGraphQL.model.Show;
+import com.example.DemoGraphQL.repository.MovieRepository;
+import com.example.DemoGraphQL.repository.ShowRepository;
 
 public class Query implements GraphQLQueryResolver {
-  private BookRepository bookRepository;
-  private AuthorRepository authorRepository;
+  private ShowRepository showRepository;
+  private MovieRepository movieRepository;
 
-  public Query(AuthorRepository authorRepository, BookRepository bookRepository) {
-    this.authorRepository = authorRepository;
-    this.bookRepository = bookRepository;
+  public Query(MovieRepository movieRepository, ShowRepository showRepository) {
+    this.movieRepository = movieRepository;
+    this.showRepository = showRepository;
   }
 
-  public Iterable<Book> findAllBooks() {
-    return bookRepository.findAll();
+  public Iterable<Show> findAllShows() {
+    return showRepository.findAll();
   }
 
-  public Iterable<Author> findAllAuthors() {
-    return authorRepository.findAll();
+  public Iterable<Movie> findAllMovies() {
+    return movieRepository.findAll();
   }
 
-  public Author findMovie(Long id) {
-    return authorRepository.findOne(id);
+  public Movie findMovie(Long id) {
+    return movieRepository.findOne(id);
   }
 
-  public long countBooks() {
-    return bookRepository.count();
+  public long countShows() {
+    return showRepository.count();
   }
 
-  public long countAuthors() {
-    return authorRepository.count();
+  public long countMovies() {
+    return movieRepository.count();
   }
 }

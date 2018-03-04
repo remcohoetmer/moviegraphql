@@ -1,0 +1,15 @@
+type Movie {
+    id: ID!
+    title: String!
+    description: String!
+}
+
+type Query {
+    findAllMovies: [Movie]!
+    countMovies: Long!
+    findMovie(id:Long): Movie!
+}
+
+type Mutation {
+    newMovie(title: String!, description: String!) : Movie!
+}

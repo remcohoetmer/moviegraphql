@@ -1,11 +1,11 @@
 package com.example.DemoGraphQL;
 
 import com.example.DemoGraphQL.exception.GraphQLErrorAdapter;
-import com.example.DemoGraphQL.model.Author;
-import com.example.DemoGraphQL.model.Book;
-import com.example.DemoGraphQL.repository.AuthorRepository;
-import com.example.DemoGraphQL.repository.BookRepository;
-import com.example.DemoGraphQL.resolver.BookResolver;
+import com.example.DemoGraphQL.model.Movie;
+import com.example.DemoGraphQL.model.Show;
+import com.example.DemoGraphQL.repository.MovieRepository;
+import com.example.DemoGraphQL.repository.ShowRepository;
+import com.example.DemoGraphQL.resolver.ShowResolver;
 import com.example.DemoGraphQL.resolver.Mutation;
 import com.example.DemoGraphQL.resolver.Query;
 import graphql.ExceptionWhileDataFetching;
@@ -54,27 +54,27 @@ public class DemoGraphQlApplication {
   }
 
   @Bean
-  public BookResolver authorResolver(AuthorRepository authorRepository) {
-    return new BookResolver(authorRepository);
+  public ShowResolver authorResolver(MovieRepository movieRepository) {
+    return new ShowResolver(movieRepository);
   }
 
   @Bean
-  public Query query(AuthorRepository authorRepository, BookRepository bookRepository) {
-    return new Query(authorRepository, bookRepository);
+  public Query query(MovieRepository movieRepository, ShowRepository showRepository) {
+    return new Query(movieRepository, showRepository);
   }
 
   @Bean
-  public Mutation mutation(AuthorRepository authorRepository, BookRepository bookRepository) {
-    return new Mutation(authorRepository, bookRepository);
+  public Mutation mutation(MovieRepository movieRepository, ShowRepository showRepository) {
+    return new Mutation(movieRepository, showRepository);
   }
 
   @Bean
-  public CommandLineRunner demo(AuthorRepository authorRepository, BookRepository bookRepository) {
+  public CommandLineRunner demo(MovieRepository movieRepository, ShowRepository showRepository) {
     return (args) -> {
-      Author author = new Author("Herbert", "Schildt");
-      authorRepository.save(author);
+      Movie movie = new Movie("Herbert", "Schildt");
+      movieRepository.save(movie);
 
-      bookRepository.save(new Book("Java: A Beginner's Guide, Sixth Edition", "0071809252", 728, author));
+      showRepository.save(new Show("Java: A Beginner's Guide, Sixth Edition", "0071809252", 728, movie));
     };
   }
 }

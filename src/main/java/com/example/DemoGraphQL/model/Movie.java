@@ -3,28 +3,28 @@ package com.example.DemoGraphQL.model;
 import javax.persistence.*;
 
 @Entity
-public class Author {
+public class Movie {
   @Id
   @Column(name = "book_id", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Column(name = "author_first_name", nullable = false)
-  private String firstName;
+  private String title;
 
   @Column(name = "author_last_name", nullable = false)
-  private String lastName;
+  private String description;
 
-  public Author() {
+  public Movie() {
   }
 
-  public Author(Long id) {
+  public Movie(Long id) {
     this.id = id;
   }
 
-  public Author(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  public Movie(String firstName, String description) {
+    this.title = firstName;
+    this.description = description;
   }
 
   public Long getId() {
@@ -35,20 +35,20 @@ public class Author {
     this.id = id;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public String getTitle() {
+    return title;
   }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
-  public String getLastName() {
-    return lastName;
+  public String getDescription() {
+    return description;
   }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   @Override
@@ -56,9 +56,9 @@ public class Author {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
-    Author author = (Author) o;
+    Movie movie = (Movie) o;
 
-    return id.equals(author.id);
+    return id.equals(movie.id);
   }
 
   @Override
@@ -68,10 +68,10 @@ public class Author {
 
   @Override
   public String toString() {
-    return "Author{" +
+    return "Movie{" +
       "id=" + id +
-      ", firstName='" + firstName + '\'' +
-      ", lastName='" + lastName + '\'' +
+      ", title='" + title + '\'' +
+      ", description='" + description + '\'' +
       '}';
   }
 }
