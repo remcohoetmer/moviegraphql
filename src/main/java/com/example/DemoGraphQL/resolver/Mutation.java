@@ -31,7 +31,7 @@ public class Mutation implements GraphQLMutationResolver {
     show.setMovie(new Movie(movieId));
     show.setHall(title);
     show.setStart(start);
-    show.setPageCount(pageCount != null ? pageCount : 0);
+    show.setSeatCount(pageCount != null ? pageCount : 0);
 
     showRepository.save(show);
 
@@ -48,7 +48,7 @@ public class Mutation implements GraphQLMutationResolver {
     if (show == null) {
       throw new ShowNotFoundException("The show to be updated was found", id);
     }
-    show.setPageCount(pageCount);
+    show.setSeatCount(pageCount);
 
     showRepository.save(show);
 

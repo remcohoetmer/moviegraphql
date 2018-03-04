@@ -54,7 +54,7 @@ public class DemoGraphQlApplication {
   }
 
   @Bean
-  public ShowResolver authorResolver(MovieRepository movieRepository) {
+  public ShowResolver showResolver(MovieRepository movieRepository) {
     return new ShowResolver(movieRepository);
   }
 

@@ -2,8 +2,9 @@ type Show {
     id: ID!
     hall: String!
     start: String!
-    pageCount: Int
+    seatCount: Int
     movie: Movie
+    availableSeats: Int
 }
 
 extend type Query {
@@ -12,7 +13,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    newShow(hall: String!, start: String!, pageCount: Int, movie: ID!) : Show!
+    newShow(hall: String!, start: String!, seatCount: Int, movie: ID!) : Show!
     deleteShow(id: ID!) : Boolean
-    updateShowPageCount(pageCount: Int!, id: ID!) : Show!
+    updateShowPageCount(seatCount: Int!, id: ID!) : Show!
 }

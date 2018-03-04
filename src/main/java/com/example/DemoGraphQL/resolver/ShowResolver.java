@@ -15,4 +15,8 @@ public class ShowResolver implements GraphQLResolver<Show> {
   public Movie getMovie(Show show) {
     return movieRepository.findOne(show.getMovie().getId());
   }
+
+  public Integer getAvailableSeats(Show show) {
+    return show.getSeatCount() / 2;
+  }
 }

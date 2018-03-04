@@ -15,8 +15,8 @@ public class Show {
   @Column(name = "show_start", nullable = false)
   private String start;
 
-  @Column(name = "movie_pageCount", nullable = false)
-  private int pageCount;
+  @Column(name = "show_seats", nullable = false)
+  private int seatCount;
 
   @ManyToOne
   @JoinColumn(name = "movie_id", nullable = false, updatable = false)
@@ -25,10 +25,10 @@ public class Show {
   public Show() {
   }
 
-  public Show(String hall, String start, int pageCount, Movie movie) {
+  public Show(String hall, String start, int seatCount, Movie movie) {
     this.hall = hall;
     this.start = start;
-    this.pageCount = pageCount;
+    this.seatCount = seatCount;
     this.movie = movie;
   }
 
@@ -56,12 +56,12 @@ public class Show {
     this.start = start;
   }
 
-  public int getPageCount() {
-    return pageCount;
+  public int getSeatCount() {
+    return seatCount;
   }
 
-  public void setPageCount(int pageCount) {
-    this.pageCount = pageCount;
+  public void setSeatCount(int seatCount) {
+    this.seatCount = seatCount;
   }
 
   public Movie getMovie() {
@@ -93,7 +93,7 @@ public class Show {
       "id=" + id +
       ", hall='" + hall + '\'' +
       ", start='" + start + '\'' +
-      ", pageCount=" + pageCount +
+      ", seatCount=" + seatCount +
       ", movie=" + movie +
       '}';
   }
