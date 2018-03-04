@@ -5,30 +5,29 @@ import javax.persistence.*;
 @Entity
 public class Show {
   @Id
-  @Column(name = "book_id", nullable = false)
+  @Column(name = "show_id", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Column(name = "book_title", nullable = false)
-  private String title;
+  @Column(name = "show_hall", nullable = false)
+  private String hall;
 
-  @Column(name = "book_isbn", nullable = false)
-  private String isbn;
+  @Column(name = "show_start", nullable = false)
+  private String start;
 
-  @Column(name = "book_pageCount", nullable = false)
+  @Column(name = "movie_pageCount", nullable = false)
   private int pageCount;
 
   @ManyToOne
-  @JoinColumn(name = "author_id",
-    nullable = false, updatable = false)
+  @JoinColumn(name = "movie_id", nullable = false, updatable = false)
   private Movie movie;
 
   public Show() {
   }
 
-  public Show(String title, String isbn, int pageCount, Movie movie) {
-    this.title = title;
-    this.isbn = isbn;
+  public Show(String hall, String start, int pageCount, Movie movie) {
+    this.hall = hall;
+    this.start = start;
     this.pageCount = pageCount;
     this.movie = movie;
   }
@@ -41,20 +40,20 @@ public class Show {
     this.id = id;
   }
 
-  public String getTitle() {
-    return title;
+  public String getHall() {
+    return hall;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setHall(String hall) {
+    this.hall = hall;
   }
 
-  public String getIsbn() {
-    return isbn;
+  public String getStart() {
+    return start;
   }
 
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
+  public void setStart(String start) {
+    this.start = start;
   }
 
   public int getPageCount() {
@@ -71,10 +70,6 @@ public class Show {
 
   public void setMovie(Movie movie) {
     this.movie = movie;
-  }
-
-  public String getRemco() {
-    return "remco";
   }
 
   @Override
@@ -96,8 +91,8 @@ public class Show {
   public String toString() {
     return "Show{" +
       "id=" + id +
-      ", title='" + title + '\'' +
-      ", isbn='" + isbn + '\'' +
+      ", hall='" + hall + '\'' +
+      ", start='" + start + '\'' +
       ", pageCount=" + pageCount +
       ", movie=" + movie +
       '}';

@@ -26,11 +26,11 @@ public class Mutation implements GraphQLMutationResolver {
     return movie;
   }
 
-  public Show newShow(String title, String isbn, Integer pageCount, Long movieId) {
+  public Show newShow(String title, String start, Integer pageCount, Long movieId) {
     Show show = new Show();
     show.setMovie(new Movie(movieId));
-    show.setTitle(title);
-    show.setIsbn(isbn);
+    show.setHall(title);
+    show.setStart(start);
     show.setPageCount(pageCount != null ? pageCount : 0);
 
     showRepository.save(show);

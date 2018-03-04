@@ -1,10 +1,9 @@
 type Show {
     id: ID!
-    title: String!
-    isbn: String!
+    hall: String!
+    start: String!
     pageCount: Int
     movie: Movie
-    remco:String
 }
 
 extend type Query {
@@ -13,7 +12,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    newShow(title: String!, isbn: String!, pageCount: Int, movie: ID!) : Show!
+    newShow(hall: String!, start: String!, pageCount: Int, movie: ID!) : Show!
     deleteShow(id: ID!) : Boolean
     updateShowPageCount(pageCount: Int!, id: ID!) : Show!
 }

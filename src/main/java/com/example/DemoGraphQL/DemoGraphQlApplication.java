@@ -5,9 +5,9 @@ import com.example.DemoGraphQL.model.Movie;
 import com.example.DemoGraphQL.model.Show;
 import com.example.DemoGraphQL.repository.MovieRepository;
 import com.example.DemoGraphQL.repository.ShowRepository;
-import com.example.DemoGraphQL.resolver.ShowResolver;
 import com.example.DemoGraphQL.resolver.Mutation;
 import com.example.DemoGraphQL.resolver.Query;
+import com.example.DemoGraphQL.resolver.ShowResolver;
 import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.servlet.GraphQLErrorHandler;
@@ -71,10 +71,18 @@ public class DemoGraphQlApplication {
   @Bean
   public CommandLineRunner demo(MovieRepository movieRepository, ShowRepository showRepository) {
     return (args) -> {
-      Movie movie = new Movie("Herbert", "Schildt");
-      movieRepository.save(movie);
+      Movie bond = new Movie("A View to a Kill", "Agent 007 (Roger Moore) moet het opnemen tegen twee van de dodelijkste schurken: de superinteligente Max Zorin (Christopher Walken), product van een genetisch Nazi-experiment en zijn handlangerster May-Day, heerlijk boosaardig gespeeld door Grace Jones. ");
+      movieRepository.save(bond);
 
-      showRepository.save(new Show("Java: A Beginner's Guide, Sixth Edition", "0071809252", 728, movie));
+      Movie k3 = new Movie("K3 en het ijsprinsesje", "K3 wordt uitgenodigd in een sprookjesland om daar te gaan zingen voor een prinses.");
+      movieRepository.save(k3);
+
+      Movie tarzan = new Movie("Tarzan", "De film vertelt het verhaal van John Clayton. Hij wordt geboren in de jungle aan de westkust van Afrika. Zijn ouders, John en Alice Clayton, zijn kort voor zijn geboorte achtergelaten in de jungle door een groep muiters die hun schip hadden overgenomen.");
+      movieRepository.save(tarzan);
+
+      showRepository.save(new Show("Main Hall", "Today 20:00", 728, bond));
+      showRepository.save(new Show("Main Hall", "Today 14:00", 728, k3));
+      showRepository.save(new Show("Main Hall", "Today 16:00", 728, tarzan));
     };
   }
 }

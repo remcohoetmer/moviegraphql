@@ -5,14 +5,14 @@ import javax.persistence.*;
 @Entity
 public class Movie {
   @Id
-  @Column(name = "book_id", nullable = false)
+  @Column(name = "movie_id", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Column(name = "author_first_name", nullable = false)
+  @Column(name = "title", nullable = false)
   private String title;
 
-  @Column(name = "author_last_name", nullable = false)
+  @Column(name = "description", nullable = false)
   private String description;
 
   public Movie() {
@@ -22,8 +22,8 @@ public class Movie {
     this.id = id;
   }
 
-  public Movie(String firstName, String description) {
-    this.title = firstName;
+  public Movie(String title, String description) {
+    this.title = title;
     this.description = description;
   }
 
