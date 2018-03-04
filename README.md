@@ -12,31 +12,51 @@ You can go to [http://localhost:8080/h2-console/login.jsp](http://localhost:8080
 
 To check the databas or to [http://localhost:8080/graphiql](http://localhost:8080/graphiql) to start executing queries. For example:
 ```
-{
-  findAllBooks {
+
+query FindAllMovies {
+  findAllMovies {
     id
-    isbn
     title
-    pageCount
-    author {
-      firstName
-      lastName
-    }
+    description
+  }
+}
+
+query FindMoviesById($id: Long) {
+  findMovie(id: $id) {
+    title
+    description
+  }
+}
+
+query FindAllShows {
+  findAllShows {
+    ...ShowFragment
+  }
+}
+
+fragment ShowFragment on Show {
+  id
+  start
+  hall
+  seatCount
+  movie {
+    title
+    description
+  }
+}
+
+mutation AddMovie {
+  newMovie(
+    title: "De Wilde Stad",
+    description: "Voor een groot aantal wilde dieren, bomen en planten zijn onze straten, tunnels, waterwegen en gebouwen van baksteen net zo geschikt en aantrekkelijke als een oerbos of nieuwe wildernis. De stad verdringt of vervangt niet de natuur, het ís natuur. ")
+  {
+    title
+    description
+    id
   }
 }
 ```
 
-Or:
-```
-mutation {
-  newBook(
-    title: "Java: The Complete Reference, Tenth Edition", 
-    isbn: "1259589331", 
-    author: 1) {
-      id title
-  }
-}
-```
 
 # License
 MIT
