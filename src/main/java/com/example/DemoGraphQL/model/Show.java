@@ -18,18 +18,17 @@ public class Show {
   @Column(name = "show_seats", nullable = false)
   private int seatCount;
 
-  @ManyToOne
-  @JoinColumn(name = "movie_id", nullable = false, updatable = false)
-  private Movie movie;
+  @Column(name = "movieID", nullable = false, updatable = false)
+  private Long movieID;
 
   public Show() {
   }
 
-  public Show(String hall, String start, int seatCount, Movie movie) {
+  public Show(String hall, String start, int seatCount, Long movieID) {
     this.hall = hall;
     this.start = start;
     this.seatCount = seatCount;
-    this.movie = movie;
+    this.movieID = movieID;
   }
 
   public Long getId() {
@@ -64,12 +63,12 @@ public class Show {
     this.seatCount = seatCount;
   }
 
-  public Movie getMovie() {
-    return movie;
+  public Long getMovieID() {
+    return movieID;
   }
 
-  public void setMovie(Movie movie) {
-    this.movie = movie;
+  public void setMovieID(Long movieID) {
+    this.movieID = movieID;
   }
 
   @Override
@@ -94,7 +93,7 @@ public class Show {
       ", hall='" + hall + '\'' +
       ", start='" + start + '\'' +
       ", seatCount=" + seatCount +
-      ", movie=" + movie +
+      ", movie=" + movieID +
       '}';
   }
 }

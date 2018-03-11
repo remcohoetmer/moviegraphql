@@ -32,7 +32,7 @@ public class Query implements GraphQLQueryResolver {
   }
 
   public Movie getMovie(Show show) {
-    return movieRepository.findOne(show.getMovie().getId());
+    return movieRepository.findOne(show.getMovieID());
   }
 
   public long countMovies() {

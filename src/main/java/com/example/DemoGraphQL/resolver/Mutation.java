@@ -28,7 +28,7 @@ public class Mutation implements GraphQLMutationResolver {
 
   public Show newShow(String title, String start, Integer pageCount, Long movieId) {
     Show show = new Show();
-    show.setMovie(new Movie(movieId));
+    show.setMovieID(movieId);
     show.setHall(title);
     show.setStart(start);
     show.setSeatCount(pageCount != null ? pageCount : 0);

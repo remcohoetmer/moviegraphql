@@ -2,6 +2,8 @@ type Movie {
     id: ID!
     title: String!
     description: String!
+    shows: [Show]
+    availableShows: [Show]
 }
 
 type Query {

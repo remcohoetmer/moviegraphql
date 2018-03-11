@@ -13,7 +13,7 @@ public class ShowResolver implements GraphQLResolver<Show> {
   }
 
   public Movie getMovie(Show show) {
-    return movieRepository.findOne(show.getMovie().getId());
+    return movieRepository.findOne(show.getMovieID());
   }
 
   public Integer getAvailableSeats(Show show) {

@@ -13,20 +13,71 @@ You can go to [http://localhost:8080/h2-console/login.jsp](http://localhost:8080
 To check the databas or to [http://localhost:8080/graphiql](http://localhost:8080/graphiql) to start executing queries. For example:
 ```
 
+
 query FindAllMovies {
   findAllMovies {
-    id
+    title
+    description
+    shows {
+      hall
+      start
+      seatCount
+      movie {
+        title
+        shows {
+          start
+        }
+      }
+    }
+  }
+}
+
+query FindMovieWithArgument {
+  findMovie(id: 1) {
     title
     description
   }
 }
 
-query FindMoviesById($id: Long) {
-  findMovie(id: $id) {
+query FindMovieWithAlias {
+  bond: findMovie(id: 1) {
     title
     description
   }
 }
+query FindMovieWithVariabele($id:Long) {
+  bond: findMovie(id: $id) {
+    title
+    description
+  }
+}
+
+query Find2MoviesWithAlias {
+  bond: findMovie(id: 1) {
+    title
+    description
+  }
+  k3: findMovie(id: 2) {
+    title
+    description
+  }
+}
+
+query Find2MoviesWithFragment {
+  bond: findMovie(id: 1) {
+    ...MovieFragment
+  }
+  k3: findMovie(id: 2) {
+    ...MovieFragment
+  }
+
+}
+
+fragment MovieFragment on Movie {
+    title
+    description
+}
+
 
 query FindAllShows {
   findAllShows {
@@ -34,14 +85,13 @@ query FindAllShows {
   }
 }
 
+
 fragment ShowFragment on Show {
-  id
   start
   hall
   seatCount
   movie {
     title
-    description
   }
 }
 

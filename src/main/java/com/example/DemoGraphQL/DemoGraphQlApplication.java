@@ -5,6 +5,7 @@ import com.example.DemoGraphQL.model.Movie;
 import com.example.DemoGraphQL.model.Show;
 import com.example.DemoGraphQL.repository.MovieRepository;
 import com.example.DemoGraphQL.repository.ShowRepository;
+import com.example.DemoGraphQL.resolver.MovieResolver;
 import com.example.DemoGraphQL.resolver.Mutation;
 import com.example.DemoGraphQL.resolver.Query;
 import com.example.DemoGraphQL.resolver.ShowResolver;
@@ -59,6 +60,11 @@ public class DemoGraphQlApplication {
   }
 
   @Bean
+  public MovieResolver movieResolver(ShowRepository showRepository) {
+    return new MovieResolver(showRepository);
+  }
+
+  @Bean
   public Query query(MovieRepository movieRepository, ShowRepository showRepository) {
     return new Query(movieRepository, showRepository);
   }
@@ -80,9 +86,11 @@ public class DemoGraphQlApplication {
       Movie tarzan = new Movie("Tarzan", "De film vertelt het verhaal van John Clayton. Hij wordt geboren in de jungle aan de westkust van Afrika. Zijn ouders, John en Alice Clayton, zijn kort voor zijn geboorte achtergelaten in de jungle door een groep muiters die hun schip hadden overgenomen.");
       movieRepository.save(tarzan);
 
-      showRepository.save(new Show("Main Hall", "Today 20:00", 728, bond));
-      showRepository.save(new Show("Main Hall", "Today 14:00", 728, k3));
-      showRepository.save(new Show("Main Hall", "Today 16:00", 728, tarzan));
+      showRepository.save(new Show("Main Hall", "Today 20:00", 100, bond.getId()));
+      showRepository.save(new Show("Main Hall", "Today 21:00", 100, bond.getId()));
+      showRepository.save(new Show("Main Hall", "Today 22:00", 0, bond.getId()));
+      showRepository.save(new Show("Main Hall", "Today 14:00", 50, k3.getId()));
+      showRepository.save(new Show("Main Hall", "Today 16:00", 50, tarzan.getId()));
     };
   }
 }
